@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# 리액트의 기초
+---
+## :mag_right: 리액트의 특징
+**✔️ 리액트란?**   
+ㆍ 리액트는 **데이터 변경을 감지**해서 **UI가 자동으로 업데이트** 되도록 하는 프레임워크이다. → **Observer 패턴**이라고 함   
+ㆍ 데이터 변경 감지를 위한 **엔진**이 필요하다. → **node.js 서버**를 사용   
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**✔️ npm과 npx**   
+ㆍ npm은 **의존성 관리 도구**로, 자바로 비유하자면 maven, gradle과 같은 역할이다.   
+ㆍ npm : **프로젝트 갯수만큼 로컬에 다운로드** 한다.   
+ㆍ npx : 다운받은 **라이브러리를 재사용**하며, 해당 라이브러리가 없을 시 다운로드한다.   
 
-## Available Scripts
+**✔️ 리액트의 특징**   
+ㆍ JavaScript 문법안에 HTML 문법 사용이 가능하다. → **JSX 문법**이라고 함   
+ㆍ 리액트에서 페이지 전환이란 **Body의 내용을 변경**하는 것이다. → **Single Page Application**이라고 함   
+ㆍ 리액트에서는 단 하나의 태그만 리턴한다.   
+ㆍ **리액트 엔진의 기본 전략**은 부모 태그가 다시 렌더링 되면, **자식 태그도 다시 렌더링을 해야 하는지 확인하는 연산 과정**을 거친다.   
+</br>
 
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+## :mag_right: 깊은 복사 함수
+**✔️ 깊은 복사 함수의 사용 이유**   
+ㆍ 자식 태그도 다시 렌더링을 해야 하는지 확인하는 **연산의 최적화를 위해** 사용 → 깊은 복사는 **레퍼런스만 비교**하기 때문에 효율적   
