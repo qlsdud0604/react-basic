@@ -4,6 +4,7 @@ let a = 10; // 변수
 const b = 20; // 상수
 
 function App() {
+  let c = [1, 2, 3];
   return (
     <div>
       <div style={myStyle}>
@@ -11,6 +12,11 @@ function App() {
       </div>
       <h1 className="box-style">해딩태그 {b === 20 && '20입니다.'}</h1>
       <hr />
+      <div>
+        {c.map((n) => (
+          <h1>{n}</h1>
+        ))}
+      </div>
     </div>
   );
 }
