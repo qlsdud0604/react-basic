@@ -54,8 +54,24 @@
         const b5 = a5.map((n) => n + 10);   // 해당 객체의 원소를 하나씩 순회, 리턴 가능, 가공 가능
         console.log(`a5의 값은 ${a5}`);   // 1, 2, 3 출력
         console.log(`b5의 값은 ${b5}`);   // 11, 12, 13 출력
+
+        /* map 연산자의 활용 */
+        
+        const users = [   // 기존의 데이터
+            { id: 1, name: "홍길동", phone: "2222" },
+            { id: 2, name: "임꺽정", phone: "3333" },
+            { id: 3, name: "이순신", phone: "4444" }
+        ];
+
+        const updateUserDto = {   // 변경하고자 하는 데이터
+            id: 2, name: "강감찬"
+        };
+
+        const newUser = users.map(user => user.id === updateUserDto.id ? { ...user, ...updateUserDto } : user);   // map 연산자를 이용해서 변경된 데이터로 수정
+        console.log(newUser);
+
     </script>
 
-</body>
+</body>l
 
 </html>
