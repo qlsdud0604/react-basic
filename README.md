@@ -85,3 +85,126 @@ const updateUserDto = {   // 변경하고자 하는 데이터
 
 const newUser = users.map(user => user.id === updateUserDto.id ? { ...user, ...updateUserDto } : user);   // map 연산자를 이용해서 기존 데이터 수정
 ```
+</br>
+
+---
+## :mag_right: useState
+**✔️ userState의 사용 이유**   
+```javascript
+function App() {
+  let number = 1;
+
+  const add = () => {
+    number++;
+    console.log(number);
+  };
+
+  return (
+    <div>
+      <h1> 숫자 : {number}</h1>
+      <button onClick={add}>더하기</button>
+    </div>
+  );
+}
+
+export default App;
+```
+ㆍ 리액트는 일반적인 변수의 변경에는 렌더링이 되지 않는다. 따라서, 화면상에서는 number의 값이 1로 계속 유지된다.   
+
+```javascript
+function App() {
+  const [number, setNumber] = useState(1);
+
+  const add = () => {
+    setNumber(number + 1);
+    console.log(number);
+  };
+
+  return (
+    <div>
+      <h1> 숫자 : {number}</h1>
+      <button onClick={add}>더하기</button>
+    </div>
+  );
+}
+
+export default App;
+```
+ㆍ 리액트 내의 hooks 라이브러리를 이용해 상태값을 선언함으로써 위 문제를 해결한다.   
+ㆍ useState 키워드를 이용해 number를 상태값으로 만든다.   
+ㆍ setNumber를 이용해서 상태값을 변경할 때마다 화면상에서 number의 값은 1씩 증가한다.   
+
+**✔️ 렌더링의 조건**   
+```javascript
+function App() {
+  console.log('App 실행됨');
+
+  const [users, setUsers] = useState([
+    { id: 1, name: '홍길동' },
+    { id: 2, name: '임꺽정' },
+    { id: 3, name: '이순신' },
+    { id: 4, name: '장보고' },
+  ]);
+
+  const download = () => {
+    let sample = [
+      { id: 1, name: '홍길동' },
+      { id: 2, name: '임꺽정' },
+      { id: 3, name: '이순신' },
+      { id: 4, name: '장보고' },
+    ];
+
+    setUsers(sample);
+  };
+
+  return (
+    <div>
+      <button onClick={download}>다운로드</button>
+      {users.map((user) => (
+        <h1>
+          {user.id}, {user.name}
+        </h1>
+      ))}
+    </div>
+  );
+}
+
+export default App;
+```
+ㆍ users의 상태값과 sample의 데이터가 동일해도 레퍼런스가 다르기 때문에 다운로드 버튼을 눌렀을 때 다시 렌더링 된다.
+
+```javascript
+function App() {
+  console.log('App 실행됨');
+  
+  let sample = [
+    { id: 1, name: '홍길동' },
+    { id: 2, name: '임꺽정' },
+    { id: 3, name: '이순신' },
+    { id: 4, name: '장보고' },
+  ];
+
+  const [users, setUsers] = useState(sample);
+
+  const download = () => {
+    sample.push({ id: 5, name: '강감찬' });
+
+    setUsers(sample);
+  };
+
+  return (
+    <div>
+      <button onClick={download}>다운로드</button>
+      {users.map((user) => (
+        <h1>
+          {user.id}, {user.name}
+        </h1>
+      ))}
+    </div>
+  );
+}
+
+export default App;
+```
+ㆍ sample의 값이 push에 의해서 변경되어도 sample의 레퍼런스와 users의 레퍼런스가 동일하기 때문에 렌더링이 되지 않는다.   
+ㆍ 결국 리액트는 상태값의 변경과 함께 레퍼런스도 변경이 되어야 렌더링이 된다.   
