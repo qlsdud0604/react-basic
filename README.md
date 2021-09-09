@@ -4,11 +4,13 @@
 **✔️ 리액트란?**   
 ㆍ 리액트는 **데이터 변경을 감지**해서 **UI가 자동으로 업데이트** 되도록 하는 프레임워크이다. → **Observer 패턴**이라고 함   
 ㆍ 데이터 변경 감지를 위한 **엔진**이 필요하다. → **node.js 서버**를 사용   
+</br>
 
 **✔️ npm과 npx**   
 ㆍ npm은 **의존성 관리 도구**로, 자바로 비유하자면 maven, gradle과 같은 역할이다.   
 ㆍ npm : **프로젝트 갯수만큼 로컬에 다운로드** 한다.   
 ㆍ npx : 다운받은 **라이브러리를 재사용**하며, 해당 라이브러리가 없을 시 다운로드한다.   
+</br>
 
 **✔️ 리액트의 특징**   
 ㆍ JavaScript 문법안에 HTML 문법 사용이 가능하다. → **JSX 문법**이라고 함   
@@ -21,6 +23,7 @@
 ## :mag_right: 깊은 복사 함수
 **✔️ 깊은 복사 함수의 사용 이유**   
 ㆍ 자식 태그도 다시 렌더링을 해야 하는지 확인하는 **연산의 최적화를 위해** 사용한다. → 깊은 복사는 **레퍼런스만 비교**하기 때문에 효율적   
+</br>
 
 **✔️ spread 연산자**
 ```javascript
@@ -33,6 +36,7 @@ console.log(`a의 값은 ${a}`);   // 1, 2, 3 출력
 console.log(`b의 값은 ${b}`);   // 1, 2, 3, 4 출력
 console.log(`c의 값은 ${c}`);   // 0, 1, 2, 3, 4 출력
 ```
+</br>
 
 **✔️ concat 연산자**
 ```javascript
@@ -42,6 +46,7 @@ const b2 = a2.concat(4);
 console.log(`a2의 값은 ${a2}`);   // 1, 2, 3 출력
 console.log(`b2의 값은 ${b2}`);   // 1, 2, 3, 4 출력
 ```
+</br>
 
 **✔️ filter 연산자**
 ```javascript
@@ -51,6 +56,7 @@ const b3 = a3.filter((n) => { return n != 1; });   // boolean 타입을 리턴, 
 console.log(`a3의 값은 ${a3}`);   // 1, 2, 3 출력
 console.log(`b3의 값은 ${b3}`);   // 2, 3 출력
 ```
+</br>
 
 **✔️ slice 연산자**
 ```javascript
@@ -62,6 +68,7 @@ console.log(`a4의 값은 ${a4}`);   // 1, 2, 3 출력
 console.log(`b4의 값은 ${b4}`);   // 1, 2 출력
 console.log(`c4의 값은 ${c4}`);   // 1, 2 출력
 ```
+</br>
 
 **✔️ map 연산자**
 ```javascript
@@ -109,7 +116,7 @@ function App() {
 
 export default App;
 ```
-ㆍ 리액트는 일반적인 변수의 변경에는 렌더링이 되지 않는다. 따라서, 화면상에서는 number의 값이 1로 계속 유지된다.   
+ㆍ 리액트는 **일반적인 변수의 변경에는 렌더링이 되지 않는다.** 따라서, 화면상에서는 number의 값이 1로 계속 유지된다.   
 
 ```javascript
 function App() {
@@ -130,9 +137,10 @@ function App() {
 
 export default App;
 ```
-ㆍ 리액트 내의 hooks 라이브러리를 이용해 상태값을 선언함으로써 위 문제를 해결한다.   
-ㆍ useState 키워드를 이용해 number를 상태값으로 만든다.   
+ㆍ 리액트 내의 hooks 라이브러리를 이용해 **상태값을 선언함으로써 위 문제를 해결**한다.   
+ㆍ **useState 키워드를 이용**해 number를 상태값으로 만든다.   
 ㆍ setNumber를 이용해서 상태값을 변경할 때마다 화면상에서 number의 값은 1씩 증가한다.   
+</br>
 
 **✔️ 렌더링의 조건**   
 ```javascript
@@ -171,7 +179,7 @@ function App() {
 
 export default App;
 ```
-ㆍ users의 상태값과 sample의 데이터가 동일해도 레퍼런스가 다르기 때문에 다운로드 버튼을 눌렀을 때 다시 렌더링 된다.
+ㆍ users의 상태값과 sample의 데이터가 동일해도 **레퍼런스가 다르기 때문에 다운로드 버튼을 눌렀을 때 다시 렌더링** 된다.
 
 ```javascript
 function App() {
@@ -206,5 +214,6 @@ function App() {
 
 export default App;
 ```
-ㆍ sample의 값이 push에 의해서 변경되어도 sample의 레퍼런스와 users의 레퍼런스가 동일하기 때문에 렌더링이 되지 않는다.   
-ㆍ 결국 리액트는 상태값의 변경과 함께 레퍼런스도 변경이 되어야 렌더링이 된다.   
+ㆍ sample의 값이 push에 의해서 변경되어도 **sample의 레퍼런스와 users의 레퍼런스가 동일하기 때문에 렌더링이 되지 않는다.**   
+ㆍ 결국 **리액트는 상태값의 변경과 함께 레퍼런스도 변경이 되어야 렌더링**이 된다.   
+</br>
