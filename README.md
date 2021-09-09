@@ -137,9 +137,9 @@ function App() {
 
 export default App;
 ```
-ㆍ 리액트 내의 hooks 라이브러리를 이용해 **상태값을 선언함으로써 위 문제를 해결**한다.   
-ㆍ **useState 키워드를 이용**해 number를 상태값으로 만든다.   
-ㆍ setNumber를 이용해서 상태값을 변경할 때마다 화면상에서 number의 값은 1씩 증가한다.   
+ㆍ 리액트 내의 hooks 라이브러리를 이용해 **상태 변수를 선언함으로써 위 문제를 해결**한다.   
+ㆍ **useState( ) 함수를 이용**해 number를 상태 변수로 만든다.   
+ㆍ setNumber를 이용해서 상태 변수의 값을 변경할 때마다 화면상에서 number의 값은 1씩 증가한다.   
 </br>
 
 **✔️ 렌더링의 조건**   
@@ -179,7 +179,7 @@ function App() {
 
 export default App;
 ```
-ㆍ users의 상태값과 sample의 데이터가 동일해도 **레퍼런스가 다르기 때문에 다운로드 버튼을 눌렀을 때 다시 렌더링** 된다.
+ㆍ users의 상태 변수의 값과 sample의 데이터가 동일해도 **레퍼런스가 다르기 때문에 다운로드 버튼을 눌렀을 때 다시 렌더링** 된다.
 
 ```javascript
 function App() {
@@ -215,5 +215,122 @@ function App() {
 export default App;
 ```
 ㆍ sample의 값이 push에 의해서 변경되어도 **sample의 레퍼런스와 users의 레퍼런스가 동일하기 때문에 렌더링이 되지 않는다.**   
-ㆍ 결국 **리액트는 상태값의 변경과 함께 레퍼런스도 변경이 되어야 렌더링**이 된다.   
+ㆍ 결국 **리액트는 상태 변수 값의 변경과 함께 레퍼런스도 변경이 되어야 렌더링**이 된다.   
+</br>
+
+---
+## :mag_right: useEffect
+**✔️ useEffect의 사용**   
+```javascript
+function App() {
+  const [data, setData] = useState(0);
+
+  const download = () => {
+    let downloadData = 5;
+    setData(downloadData);
+  };
+
+  useEffect(() => {
+    console.log('useEffect 실행됨');
+    download();
+  });
+
+  return (
+    <div>
+      <h1>데이터 : {data}</h1>
+      <button
+        onClick={() => {
+          setData(data + 1);
+        }}
+      >
+        더하기
+      </button>
+    </div>
+  );
+}
+
+export default App;
+```
+ㆍ **useEffect( ) 함수는 App( ) 함수가 마운트 될 때 실행**되는 함수이다.   
+ㆍ 또한 **상태 변수의 값이 변경될 때마다 실행**된다.   
+ㆍ 위 코드는 button의 onClick 함수에 의해서 상태 변수 값이 변경되므로, **지속적으로 useEffect( ) 함수가 호출된다는 문제점**이 있다.   
+ㆍ 따라서, **useEffect( ) 함수의 의존성을 설정할 필요**가 있다.   
+</br>
+
+**✔️ useEffect의 의존성 설정**   
+```javascript
+useEffect(() => {
+        console.log('useEffect 실행됨');
+        download();
+}, [data]);
+```
+ㆍ **useEffect( ) 함수의 두 번째 매개변수에 값을 집어넣음으로써 의존성 설정이 가능**하다.   
+ㆍ 위 코드는 data 값의 변경에 의존하겠다는 의미이다. → **data 값이 변경될때 마다 실행**
+
+```javascript
+useEffect(() => {
+        console.log('useEffect 실행됨');
+        download();
+}, []);
+```
+ㆍ 위 코드는 어떠한 의존관계도 설정하지 않겠다는 의미이다. → **최초 한 번만 실행**   
+</br>
+
+---
+## :mag_right: useMemo
+**✔️ useMemo의 사용**   
+```javascript
+function App() {
+  const [list, setList] = useState([1, 2, 3, 4]);
+  const [string, setString] = useState('합계');
+
+  const getAddResult = () => {
+    let sum = 0;
+
+    list.forEach((i) => (sum += i));
+    console.log(sum);
+
+    return sum;
+  };
+
+  return (
+    <div>
+      <button
+        onClick={() => {
+          setString('안녕');
+        }}
+      >
+        문자 변경
+      </button>
+
+      <button
+        onClick={() => {
+          setList([...list, 10]);
+        }}
+      >
+        리스트값 추가
+      </button>
+      <div>
+        {list.map((item) => (
+          <h1>{item}</h1>
+        ))}
+      </div>
+      <div>
+        {string} : {getAddResult}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+```
+ㆍ 위 코드는 **문자를 변경하는 버튼을 누를때 마다 getAddResult( ) 함수가 실행되는 비효율적인 과정**이 발생한다.   
+ㆍ 이러한 비효율적인 과정을 생략하기 위해 useMemo( ) 함수의 사용이 필요하다.   
+
+```javascript
+const addResult = useMemo(() => getAddResult(), [list]);
+```
+ㆍ useMemo( ) 함수를 통해 addResult( ) 함수를 추가해준다.   
+ㆍ 첫 번째 매개변수는 호출할 함수를 명시해 주고, 두 번째는 의존관계 설정에 대한 매개변수이다.   
+ㆍ 즉, list 값의 변경이 일어날 때만 getAddResult( ) 함수를 실행한다는 의미이다.   
 </br>
