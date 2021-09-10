@@ -1,19 +1,10 @@
-import { useState, useMemo, useRef } from 'react';
 import './App.css';
+import LoingPage from './pages/LoingPage';
 
 function App() {
-  const myRef = useRef(null);
-
   return (
     <div>
-      <button
-        onClick={() => {
-          myRef.current.style.backgroundColor = 'red';
-        }}
-      >
-        색 변경
-      </button>
-      <div ref={myRef}>박스</div>
+      <LoingPage />
     </div>
   );
 }
