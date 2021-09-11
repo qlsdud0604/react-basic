@@ -6,6 +6,7 @@ import Home from '../components/home/Home';
 
 const HomePage = () => {
   const [boards, setBoards] = useState([]);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     let data = [
@@ -15,12 +16,13 @@ const HomePage = () => {
     ];
 
     setBoards([...data]);
+    setUser({ id: 1, userName: '홍길동' });
   }, []);
 
   return (
     <div>
       <Header />
-      <Home boards={boards} setBoards={setBoards} />
+      <Home boards={boards} setBoards={setBoards} user={user} />
       <Footer />
     </div>
   );

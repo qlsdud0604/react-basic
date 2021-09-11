@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Header = () => {
   return (
-    <StyledHeaderDiv>
+    <StyledHeaderDiv backgroundColor="blue">
       <ul>
         <li>메뉴1</li>
         <li>메뉴2</li>
@@ -17,4 +17,5 @@ export default Header;
 const StyledHeaderDiv = styled.div`
   border: 1px solid black;
   height: 100px;
+  background-color: ${(props) => props.backgroundColor};
 `;
