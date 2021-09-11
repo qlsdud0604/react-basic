@@ -1,7 +1,5 @@
 import React from 'react';
 import { useEffect, useState } from 'react/cjs/react.development';
-import Footer from '../components/common/Footer';
-import Header from '../components/common/Header';
 import Home from '../components/home/Home';
 
 const HomePage = () => {
@@ -19,13 +17,7 @@ const HomePage = () => {
     setUser({ id: 1, userName: '홍길동' });
   }, []);
 
-  return (
-    <div>
-      <Header />
-      <Home boards={boards} setBoards={setBoards} user={user} />
-      <Footer />
-    </div>
-  );
+  return <Home boards={boards} setBoards={setBoards} user={user} />;
 };
 
 export default HomePage;
