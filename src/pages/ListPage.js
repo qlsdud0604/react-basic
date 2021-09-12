@@ -32,8 +32,7 @@ const ListPage = () => {
   };
 
   const handleForm = (e) => {
-    //   computed property names 문법 (키값 동적할당)
-    setPost({ ...post, [e.target.name]: e.target.value });
+    setPost({ ...post, [e.target.name]: e.target.value }); // computed property names 문법 (키값 동적할당)
   };
 
   return (
