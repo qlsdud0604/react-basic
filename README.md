@@ -22,4 +22,4 @@
 </br>
 
 ## 링크
-* Tistory : https://qlsdud0604.tistory.com/category/React/React%20%EA%B8%B0%EC%B4%88
+* Tistory : https://qlsdud0604.tistory.com/category/Framework/React%20%EA%B8%B0%EC%B4%88
